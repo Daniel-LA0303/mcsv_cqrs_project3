@@ -1,4 +1,4 @@
-package com.productsqrs.event;
+package com.productsqrs.command.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

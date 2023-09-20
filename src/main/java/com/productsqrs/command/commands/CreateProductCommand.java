@@ -1,11 +1,10 @@
-package com.productsqrs.commands;
+package com.productsqrs.command.commands;
 
 
 import lombok.Builder;
 import lombok.Data;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-import javax.persistence.Id;
 import java.math.BigDecimal;
 
 @Data

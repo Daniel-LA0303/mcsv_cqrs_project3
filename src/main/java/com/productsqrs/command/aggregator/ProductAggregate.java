@@ -1,11 +1,12 @@
-package com.productsqrs.aggregator;
+package com.productsqrs.command.aggregator;
 
 
-import com.productsqrs.commands.CreateProductCommand;
-import com.productsqrs.event.ProductCreateEvent;
+import com.productsqrs.command.commands.CreateProductCommand;
+import com.productsqrs.command.event.ProductCreateEvent;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
@@ -34,6 +35,14 @@ public class ProductAggregate {
 
         BeanUtils.copyProperties(createProductCommand, productCreateEvent);
         AggregateLifecycle.apply(productCreateEvent); //add events to the event bus
+    }
+
+    @EventSourcingHandler //we create the event
+    public void on(ProductCreateEvent productCreateEvent) {
+        this.productId = productCreateEvent.getProductId();
+        this.name = productCreateEvent.getName();
+        this.price = productCreateEvent.getPrice();
+        this.quantity = productCreateEvent.getQuantity();
     }
 
 }

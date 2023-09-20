@@ -1,8 +1,8 @@
-package com.productsqrs.event;
+package com.productsqrs.command.event;
 
 
-import com.productsqrs.data.Product;
-import com.productsqrs.repository.ProductRepository;
+import com.productsqrs.command.data.Product;
+import com.productsqrs.command.repository.ProductRepository;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,13 +1,17 @@
-package com.productsqrs.models;
+package com.productsqrs.command.data;
 
 
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 
 @Data
-public class ProuctRestModel {
+@Entity
+public class Product {
 
+    @Id
     private String productId;
 
     private String name;
