@@ -16,13 +16,17 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductQueryController {
 
+
     @Autowired
-    private QueryGateway queryGateway;
+    private QueryGateway queryGateway; //allows you to send the query action to the axon server
 
     @GetMapping
     public List<ProductRestModel> listProducts(){
         GetProductQuery getProductQuery = new GetProductQuery();
-        List<ProductRestModel> products = queryGateway.query(getProductQuery, ResponseTypes.multipleInstancesOf(ProductRestModel.class)).join();
+        List<ProductRestModel> products = queryGateway.query( //query method is used to send the query to the axon server
+                getProductQuery, //type of query
+                ResponseTypes.multipleInstancesOf(ProductRestModel.class) //type of response
+        ).join();
         return products;
     }
 }

@@ -18,6 +18,7 @@ public class ProductProjection {
     private ProductRepository productRepository;
 
 
+    //this method is used to handle the query
     @QueryHandler
     public List<ProductRestModel> handle(GetProductQuery getProductQuery){
         List<Product> products = productRepository.findAll();

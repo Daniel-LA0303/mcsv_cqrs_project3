@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Builder
 public class CreateProductCommand {
 
-    @TargetAggregateIdentifier // This annotation is used to identify the aggregate that will handle this command
+    @TargetAggregateIdentifier // This annotation is used to identify the aggregate that will handle this command, type of aggregate
     private String productId;
 
     private String name;

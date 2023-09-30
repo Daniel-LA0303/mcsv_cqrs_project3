@@ -6,6 +6,8 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+
+//this class is a model that will be used to received the product details
 @Data
 @Builder
 public class ProductRestModel {

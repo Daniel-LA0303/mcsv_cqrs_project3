@@ -20,7 +20,8 @@ import java.math.BigDecimal;
 @Aggregate // This annotation say to axon that this class should be administered by axon
 public class ProductAggregate {
 
-    @AggregateIdentifier // This annotation is used to identify the aggregate that will handle this command
+    //indentify the aggregate
+    @AggregateIdentifier // This annotation is used to identify the aggregate that will handle this command, it will be stored in a bus type and run like a queue
     private String productId;
 
     private String name;
@@ -29,15 +30,16 @@ public class ProductAggregate {
 
     private Integer quantity;
 
-    @CommandHandler
-    public ProductAggregate(CreateProductCommand createProductCommand) {
-        ProductCreateEvent productCreateEvent = ProductCreateEvent.builder().build();
 
-        BeanUtils.copyProperties(createProductCommand, productCreateEvent);
+    @CommandHandler //this command tells us that it is a command handler, that is, the type is identified by the parameters
+    public ProductAggregate(CreateProductCommand createProductCommand) {
+        ProductCreateEvent productCreateEvent = ProductCreateEvent.builder().build(); //create the event
+
+        BeanUtils.copyProperties(createProductCommand, productCreateEvent); //coopy the properties from the command to the event
         AggregateLifecycle.apply(productCreateEvent); //add events to the event bus
     }
 
-    @EventSourcingHandler //we create the event
+    @EventSourcingHandler //we work with this event to create the product
     public void on(ProductCreateEvent productCreateEvent) {
         this.productId = productCreateEvent.getProductId();
         this.name = productCreateEvent.getName();
